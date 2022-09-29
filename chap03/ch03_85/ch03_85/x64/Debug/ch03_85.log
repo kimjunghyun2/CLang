@@ -1,0 +1,3 @@
+﻿  ch03_85.c
+C:\CLang\chap03\ch03_85\ch03_85\ch03_85.c(3,9): warning C4101: 'j' :참조되지 않은 지역 변수입니다.
+  ch03_85.vcxproj -> C:\CLang\chap03\ch03_85\x64\Debug\ch03_85.exe

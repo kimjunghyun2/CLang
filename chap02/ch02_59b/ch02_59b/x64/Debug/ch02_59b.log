@@ -1,0 +1,3 @@
+﻿  59p.c
+C:\CLang\chap02\ch02_59b\ch02_59b\59p.c(5,14): warning C4101: 're2' :참조되지 않은 지역 변수입니다.
+  ch02_59b.vcxproj -> C:\CLang\chap02\ch02_59b\x64\Debug\ch02_59b.exe
