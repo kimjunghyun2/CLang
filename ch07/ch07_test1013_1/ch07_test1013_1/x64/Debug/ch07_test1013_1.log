@@ -1,0 +1,19 @@
+﻿  test.c
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(84,13): warning C4244: '함수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(90,13): warning C4244: '함수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(102,10): warning C4244: '함수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(107,10): warning C4244: '함수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(119,9): warning C4244: '함수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(124,9): warning C4244: '함수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(136,11): warning C4244: '함수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(141,11): warning C4244: '함수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(62,8): warning C4101: 'b' :참조되지 않은 지역 변수입니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(160,13): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(166,13): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(173,14): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(179,14): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(186,13): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(192,13): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(199,14): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\CLang\ch07\ch07_test1013_1\ch07_test1013_1\test.c(205,14): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  ch07_test1013_1.vcxproj -> C:\CLang\ch07\ch07_test1013_1\x64\Debug\ch07_test1013_1.exe

@@ -8,11 +8,11 @@ int main(void) {
 
 	calc = add;
 	result = calc(20, 10);					//add 함수의 포인터 얻기
-	printf("Calc result : %d\n", result);	//함수의 포인터로 함수 호출
+	printf("Calc result : %d(%p)\n", result,calc);	//함수의 포인터로 함수 호출
 
 	calc = sub;								//sub 함수의 포인터 얻기
 	result = calc(20, 10);					//함수의 포인터로 함수 호출
-	printf("Calc result: %d\n", result);	// 함수는 & 없이 함수명만 지정해도 주소가 저장됨
+	printf("Calc result: %d(%p)\n", result,calc);	// 함수는 & 없이 함수명만 지정해도 주소가 저장됨
 
 	return 0;
 }
