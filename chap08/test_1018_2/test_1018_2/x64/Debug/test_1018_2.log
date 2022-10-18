@@ -1,0 +1,3 @@
+﻿  test.c
+C:\CLang\chap08\test_1018_2\test_1018_2\test.c(12,25): error C2143: 구문 오류: ')'이(가) ';' 앞에 없습니다.
+C:\CLang\chap08\test_1018_2\test_1018_2\test.c(12,29): error C2059: 구문 오류: ')'
