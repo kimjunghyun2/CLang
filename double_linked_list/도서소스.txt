@@ -1,0 +1,306 @@
+================
+bookddl.h
+================
+#pragma once
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct BOOKLIST {
+	char code[10];   // 도서코드
+	char name[20];  // 책이름
+	char author[20]; // 저자
+	int year;  // 발행연도
+	struct BOOKLIST* prev;   // 이전 노드 연결 포인터
+	struct BOOKLIST* next;   // 다음 노드 연결 포인터
+} BOOK_t;
+
+BOOK_t* head;   // 연결 리스트의 head
+BOOK_t* current; // 현재 화면에 표시되는 노드
+
+void initialize_DLL() {                  // head 노드 생성
+	head = (BOOK_t*)calloc(1, sizeof(BOOK_t));
+	if (head == NULL) {
+		printf("이중 연결 리스트를 생성하지 못했습니다!!\n");
+		getchar();
+	}
+}
+void print_node() {    // 이중 연결 리스트 전체 출력
+	BOOK_t* p = head;
+	if (p->next != NULL) {
+		printf("=======================================================\n");
+		printf("코드\t도서명\t\t저자\t\t출판년도\n");
+		printf("=======================================================\n");
+		do {
+			p = p->next;
+			printf("[%s]\t%-10s\t%-5s\t\t%5d\n", p->code, p->name, p->author, p->year);
+		} while (p->next != NULL);
+		printf("=======================================================\n");
+	}
+	else {
+		printf("출력할 자료가 없습니다.\n");
+	}
+}
+void print_one_node(BOOK_t *data) {    // 하나의 노드만 출력
+	if (data != NULL) {
+		printf("=======================================================\n");
+		printf("%10s [ %s ]\n", "코드", data->code);
+		printf("%10s [ %s ]\n", "도서명", data->name);
+		printf("%10s [ %s ]\n", "저자", data->author);
+		printf("%10s [ %d ]\n", "출판년도", data->year);
+		printf("=======================================================\n");
+	}
+}
+BOOK_t* new_node() {  // 데이터 생성
+	BOOK_t* data = (BOOK_t*)calloc(1, sizeof(BOOK_t));
+	if (data != NULL) {
+		switch (update_select) {
+		case INSERT:	// 도서 등록인 경우에만 도서 코드를 입력받음.
+			printf("도서 코드를 입력하세요 : ");
+			scanf_s("%s", data->code, sizeof(data->code));
+			//break;
+		case MODIFY :  // 도서 수정인 경우에는 도서 코드 입력받지 않음
+			printf("도서명을 입력하세요 : ");
+			scanf_s("%s", data->name, sizeof(data->name));
+			printf("저자 이름을 입력하세요 : ");
+			scanf_s("%s", data->author, sizeof(data->author));
+			printf("출판 년도를 입력하세요 : ");
+			scanf_s("%d", &data->year);
+			break;
+		}
+	}
+	else {
+		printf("메모리 할당 실패!\n");
+		getchar();
+	}
+	return data;
+}
+void append_node(BOOK_t* data) {   // 데이터 추가
+	BOOK_t* p = head;
+	while (p->next != NULL)
+		p = p->next;
+	p->next = data;
+	if (p != head) data->prev = p;    // 노드가 하나도 없을 경우에는 실행 안됨. 처음 추가되는 노드인 경우에는 NULL
+}
+void insert_node(BOOK_t* data) {    // 데이터 삽입
+	BOOK_t* p = head;
+	while (p->next != NULL) {           // 현재 위치 다음으로 삽입
+		p = p->next;
+		if (p == current) break;
+	}
+	if (p == head) {   // 첫노드로 삽입하는 경우
+		data->next = p->next;
+		data->next->prev = data;
+		p->next = data;
+	}
+	else if (p->next == NULL) {  // 마지막노드로 삽입하는 경우
+		data->prev = p;
+		p->next = data;
+	}
+	else {  // 중간 노드로 삽입하는 경우
+		data->next = p->next;
+		data->next->prev = data;
+		p->next = data;
+		data->prev = p;
+	}
+}
+void delete_node() {          // 데이터 삭제
+
+	BOOK_t* p = current;
+	if (current->next != NULL) current = current->next;   // 현재 위치를 다음 노드로 설정
+	else {
+		if (current->prev != NULL) current = current->prev;  // 현재 위치를 이전 노드로 설정
+		else current = NULL;   // 현재 위치를 설정 안함.(연결리스트에 노드가 없는 경우)
+	}
+
+	if (p->next == NULL && p->prev == NULL) {  // 노드가 한개인 경우
+		head->next = NULL;
+	}
+	else if (p->next == NULL && p->prev != NULL) {  // 마지막 노드이면
+		p->prev->next = NULL;
+	}
+	else if (p->prev == NULL && p->next != NULL) {  // 처음 노드이면
+		p->next->prev = NULL;
+		head->next = p->next;
+	}
+	else {   // 중간 노드이면
+		p->next->prev = p->prev;
+		p->prev->next = p->next;
+	}
+	free(p);
+
+}
+void search_node() {          // 데이터 검색
+	char name[20];
+	printf("검색하고자 하는 도서명을 입력하세요 : ");
+	scanf_s("%s", name, sizeof(name));
+	getchar();
+
+	BOOK_t* p = head;
+	while (p->next != NULL) {
+		p = p->next;
+		if (!strcmp(p->name, name)) {  // 이름으로 해당 노드 찾기
+			current = p;   // 현재 찾은 노드를 현재 노드로 설정
+			break;
+		}
+	}
+}
+
+========
+pro_book.c
+========
+enum MAIN_MENU { END, READ, LIST, UPDATE, WRITE };
+enum MAIN_MENU main_select;
+enum UPDATE_MENU { EXIT, PREV, NEXT, INSERT, MODIFY, DELETE, SEARCH };
+enum UPDATE_MENU update_select;
+
+#include "BookDLL.h"
+void read_book();
+void update_book();
+void write_book();
+char book_name[20]="book.txt";
+
+int main()
+{
+	BOOK_t* data = NULL;
+	initialize_DLL();  // 연결 리스트 생성(head 생성)
+
+	while (head != NULL) {   // 연결 리스트가 생성되었으면 반복
+		system("cls");   // 화면 지우기
+		
+		printf("=======================================================\n");
+		printf("\t\t   도서관리 프로그램\n");
+		printf("=======================================================\n");
+		printf("1 : 도서 자료 읽어 오기\n");
+		printf("2 : 도서 현황 보기\n");
+		printf("3 : 도서 관리 하기\n");
+		printf("4 : 도서 자료 저장 하기\n");
+		printf("0 : 종료\n");
+		printf(">> ");
+		scanf_s("%d", &main_select);  // 메뉴선택
+		getchar();
+		if (main_select == END)	break;
+		switch (main_select) {
+		case READ :  // 도서 자료 읽어 오기
+			read_book();
+			getchar();
+			break;
+		case LIST :  // 도서 현황 보기
+			print_node();
+			getchar();
+			break;
+		case UPDATE : // 도서 관리하기
+			update_book();
+			break;
+		case WRITE : // 도서 자료 저장 하기
+			write_book();
+			getchar();
+			break;
+		}
+	}
+}
+void read_book() {
+	printf("읽어올 도서 자료 파일 이름을 입력하세요 : ");
+	scanf_s("%s", book_name, sizeof(book_name));
+	getchar();
+
+	BOOK_t *data;
+	FILE* file;
+	if (fopen_s(&file, book_name, "rt") == 0) {  // 파일을 읽기 모드로 오픈
+		int count = 0;    
+		while (1) {
+			data = (BOOK_t*)calloc(1, sizeof(BOOK_t));
+			int result = fscanf_s(file, "%s %s %s %d", data->code, sizeof(data->code), data->name, sizeof(data->name), data->author, sizeof(data->author), &data->year);
+			if (result != EOF) {  // 읽기 성공시 데이터 개수, 실패시 -1(EOF)
+				append_node(data);
+				count++;
+				printf("%s %s %s %d\n", data->code, data->name, data->author, data->year);
+			}
+			else break;
+		}
+		fclose(file);
+		printf("[ %d ]개의 데이터를 읽었습니다.\n", count);
+	}
+	else {
+		printf("%s 파일을 읽어오지 못했습니다.\n", book_name);
+	}
+}
+void write_book() {
+
+	BOOK_t* data = head;
+	FILE* file;
+	if (fopen_s(&file, book_name, "wt") == 0) {  // 파일을 쓰기모드로 오픈
+		int count = 0;
+		while (data->next != NULL) {
+			data = data->next;
+			fprintf(file, "%s %s %s %d\n", data->code, data->name, data->author, data->year);
+			count++;
+		}
+		fclose(file);
+		printf("[ %d ]개의 데이터를 저장하였습니다.\n", count);
+	}
+	else {
+		printf("%s 파일을 저장하지 못했습니다.\n", book_name);
+	}
+}
+
+void update_book() {
+	BOOK_t* data;
+	current = head->next;     // 첫번째 도서를 현재 화면에 보는 도서로 설정
+	while (head != NULL) {   // 연결 리스트가 생성되었으면 반복
+		system("cls");   // 화면 지우기
+		printf("=======================================================\n");
+		printf("\t\t   도서 관리 하기\n");
+		printf("=======================================================\n");
+		if(current != NULL ) print_one_node(current);  // 현재 도서 화면 출력
+		printf("1 : 이전 도서\n");
+		printf("2 : 다음 도서\n");
+		printf("3 : 도서 등록\n");
+		printf("4 : 도서 수정\n");
+		printf("5 : 도서 삭제\n");
+		printf("6 : 도서 검색\n");
+		printf("0 : 주 메뉴로 돌아가기\n");
+		printf(">> ");
+		scanf_s("%d", &update_select);  // 메뉴선택
+		if (update_select == EXIT) break;
+		if (current == NULL) {                     // 출력할 노드가 없으면 "이전","다음","수정","삭제", "검색" 기능 선택안되게 함.
+			switch (update_select) {               //  "등록", "주메뉴로 돌아가기"는 가능
+			case PREV:
+			case NEXT:
+			case MODIFY:
+			case DELETE:
+			case SEARCH:
+				continue;
+			}
+		}
+		switch (update_select) {
+		case PREV :  // 이전 도서 
+			if (current->prev != NULL) current = current->prev;
+			break;
+		case NEXT:  // 다음 도서
+			if (current->next != NULL) current = current->next;
+			break;
+		case INSERT : // 도서 등록
+			data = new_node();    // 새로운 노드 입력받아서 생성
+			if (head->next == NULL) append_node(data);  // 첫노드 추가
+			else insert_node(data);  // 새로운 노드 삽입
+			current = data;
+			break;
+		case MODIFY : // 도서 수정
+			data = new_node();    // 새로운 노드 입력받아서 생성
+			strcpy_s(current->name, sizeof(current->name), data->name);
+			strcpy_s(current->author, sizeof(current->author), data->author);
+			current->year = data->year;
+			free(data);
+			break;
+		case DELETE : // 도서 삭제
+			delete_node();
+			break;
+		case SEARCH : // 도서 검색
+			search_node();
+			break;
+		}
+	}
+}
+
+

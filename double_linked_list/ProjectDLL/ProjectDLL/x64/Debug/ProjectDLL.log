@@ -1,0 +1,10 @@
+﻿  dll.c
+C:\CLang\double_linked_list\ProjectDLL\ProjectDLL\dll.h(64,12): warning C4477: 'scanf_s' : 서식 문자열 '%s'에 'unsigned int' 형식의 인수가 필요하지만 variadic 인수 2의 형식이 'size_t'입니다.
+C:\CLang\double_linked_list\ProjectDLL\ProjectDLL\dll.h(64,12): message : 이 인수는 버퍼 크기로 사용됩니다.
+C:\CLang\double_linked_list\ProjectDLL\ProjectDLL\dll.h(66,12): warning C4477: 'scanf_s' : 서식 문자열 '%s'에 'unsigned int' 형식의 인수가 필요하지만 variadic 인수 2의 형식이 'size_t'입니다.
+C:\CLang\double_linked_list\ProjectDLL\ProjectDLL\dll.h(66,12): message : 이 인수는 버퍼 크기로 사용됩니다.
+C:\CLang\double_linked_list\ProjectDLL\ProjectDLL\dll.h(68,12): warning C4477: 'scanf_s' : 서식 문자열 '%s'에 'unsigned int' 형식의 인수가 필요하지만 variadic 인수 2의 형식이 'size_t'입니다.
+C:\CLang\double_linked_list\ProjectDLL\ProjectDLL\dll.h(68,12): message : 이 인수는 버퍼 크기로 사용됩니다.
+C:\CLang\double_linked_list\ProjectDLL\ProjectDLL\dll.h(150,10): warning C4477: 'scanf_s' : 서식 문자열 '%s'에 'unsigned int' 형식의 인수가 필요하지만 variadic 인수 2의 형식이 'size_t'입니다.
+C:\CLang\double_linked_list\ProjectDLL\ProjectDLL\dll.h(150,10): message : 이 인수는 버퍼 크기로 사용됩니다.
+  ProjectDLL.vcxproj -> C:\CLang\double_linked_list\ProjectDLL\x64\Debug\ProjectDLL.exe
