@@ -1,0 +1,1 @@
+#include <iostream>#include "Parent.h"using namespace std;// 클래스 구현부Parent::Parent(void)		// 기본생성자{	money = 1000000000;		// 십억 원, 멤버변수 초기화 }Parent::~Parent(void){}void Parent::Character(void){	cout << "차분한 성품" << endl;}void Parent::Appearance(void){	cout << "잘생긴 외모" << endl;}void Parent::Wealth(void){	cout << "재산: " << money << "원" << endl;}

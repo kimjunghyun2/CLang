@@ -1,0 +1,1 @@
+#include "Figure.h"int main(void){	Ellipse ellipse(30, 20, 50, 20);	Triangle triangle(10, 10, 20, 30);	Rectangle rectangle(20, 30, 10, 20);	ellipse.Draw();		// 타원 그리기	triangle.Draw();	// 삼각형 그리기	rectangle.Draw();	// 사각형 그리기	return 0;}

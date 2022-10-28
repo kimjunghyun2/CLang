@@ -1,0 +1,1 @@
+#include <iostream>#include "Child.h"using namespace std;Child::Child(){}Child::~Child(){}void Child::Humanity(void){	cout << "넘치는 인간미" << endl;}void Child::Character() {}
